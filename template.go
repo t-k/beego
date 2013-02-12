@@ -20,6 +20,7 @@ func init() {
 	beegoTplFuncMap["dateformat"] = DateFormat
 	beegoTplFuncMap["date"] = Date
 	beegoTplFuncMap["compare"] = Compare
+	beegoTplFuncMap["htmlsafe"] = HtmlSafe
 }
 
 // MarkDown parses a string in MarkDown format and returns HTML. Used by the template parser as "markdown"
@@ -83,6 +84,11 @@ func Compare(a, b interface{}) (equal bool) {
 		equal = true
 	}
 	return
+}
+
+// htmlSafe unescape HTML output. Used by the template parser as "htmlsafe"
+func HtmlSafe(text string) template.HTML {
+  return template.HTML(text)
 }
 
 // AddFuncMap let user to register a func in the template
